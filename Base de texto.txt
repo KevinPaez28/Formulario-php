@@ -1,0 +1,53 @@
+
+delete from ciudad where id_ciudad=10;
+select * from ciudad; 
+set SQL_SAFE_UPDATES = 0;
+
+
+create table genero(
+id_genero int auto_increment,
+genero varchar (15) not null,
+primary key (id_genero)
+);
+
+create table ciudad(
+id_ciudad int auto_increment,
+ciudad varchar (20) not null,
+primary key (id_ciudad));
+
+create table lenguajes(
+id_lenguaje int auto_increment,
+lenguaje varchar (30),
+primary key (id_lenguaje));
+
+create table usuario(
+id_aprendiz int auto_increment,
+nombre varchar (15) not null,
+apellido varchar (15),
+fecha_nacimiento date,
+id_genero int,
+id_ciudad int,
+correo varchar (40),
+unique (correo),
+primary key (id_aprendiz),
+foreign key (id_genero) references Genero (id_genero),
+foreign key (id_ciudad) references Ciudad (id_ciudad));
+
+create table lenguaje_usuarios(
+id_lenguaje_usuario int auto_increment,
+id_aprendiz int,
+id_lenguaje int,
+primary key (id_lenguaje_usuario),
+foreign key (id_aprendiz) references Usuario (id_aprendiz),
+foreign key (id_lenguaje) references Lenguajes (id_lenguaje));
+
+insert into ciudad (ciudad)
+values ('giron'),('piedecuesta'),('bucaramanga'),('florida'),('lebrija');
+
+insert into lenguajes (lenguaje)
+values ('sql'),('javas'),('Javascript'),('php'),('.net');
+
+insert into genero (genero)
+values ('Masculino'),('Femenino');
+
+SELECT * FROM usuario;
